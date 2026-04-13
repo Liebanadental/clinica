@@ -6,7 +6,7 @@ backend:
   name: github
   repo: Liebanadental/clinica
   branch: main
-  base_url: https://websitediegov4.vercel.app
+  base_url: https://clinicadentalliebana.es
   auth_endpoint: /api/auth
 
 # Media files configuration

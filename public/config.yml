@@ -1,0 +1,89 @@
+# Decap CMS Configuration
+# Documentation: https://decapcms.org/docs/configuration-options/
+
+# GitHub Backend for Vercel deployment
+backend:
+  name: github
+  repo: oneclickflow/website_diego_v4
+  branch: main
+  base_url: https://websitediegov4.vercel.app
+  auth_endpoint: /api/auth
+
+# Media files configuration
+media_folder: "public/blog-images"
+public_folder: "/blog-images"
+
+# Locale settings
+locale: 'es'
+
+# Collections
+collections:
+  - name: "blog"
+    label: "Blog Posts"
+    label_singular: "Blog Post"
+    folder: "content/blog"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    sortable_fields: ['date', 'title', 'category']
+    view_filters:
+      - label: "Prevención"
+        field: category
+        pattern: 'Prevención'
+      - label: "Estética"
+        field: category
+        pattern: 'Estética'
+      - label: "Ortodoncia"
+        field: category
+        pattern: 'Ortodoncia'
+    fields:
+      - label: "Título"
+        name: "title"
+        widget: "string"
+        required: true
+      - label: "Slug (URL)"
+        name: "slug"
+        widget: "string"
+        required: true
+        hint: "URL-friendly name (e.g., 'mi-primer-blog')"
+        pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', "Solo minúsculas, números y guiones"]
+      - label: "Fecha de Publicación"
+        name: "date"
+        widget: "string"
+        required: true
+        hint: "Formato: '15 Nov 2024'"
+      - label: "Imagen Principal"
+        name: "image"
+        widget: "image"
+        required: true
+        allow_multiple: false
+        hint: "Sube una imagen o pega una URL"
+      - label: "Categoría"
+        name: "category"
+        widget: "select"
+        options:
+          - "Prevención"
+          - "Estética"
+          - "Ortodoncia"
+          - "Implantes"
+          - "Odontopediatría"
+          - "Periodoncia"
+          - "Endodoncia"
+          - "General"
+        required: true
+      - label: "Tiempo de Lectura"
+        name: "readTime"
+        widget: "string"
+        required: true
+        hint: "Ejemplo: '5 min'"
+      - label: "Extracto"
+        name: "excerpt"
+        widget: "text"
+        required: true
+        hint: "Breve descripción del artículo (aparece en la lista de posts)"
+      - label: "Contenido"
+        name: "body"
+        widget: "markdown"
+        required: true
